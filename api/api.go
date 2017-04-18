@@ -8,7 +8,7 @@ import (
 	"strings"
 )
 
-//Start start api 
+//Start start api
 func Start() {
 	log.SetLevel(log.DebugLevel)
 	log.Info("Start API")
@@ -19,7 +19,7 @@ func Start() {
 	r.Run()
 }
 
-//GetMatch endpoint to snap data. Return list of points. 
+//GetMatch endpoint to snap data. Return list of points.
 func GetMatch(c *gin.Context) {
 	pointsParam := c.Param("points")
 	rawPoints := strings.Split(pointsParam, ";")
@@ -44,7 +44,7 @@ func GetMatch(c *gin.Context) {
 	//covert in format to debug [[lon, lat]]
 	pts := make([][]float64, len(mapMaptch))
 	for i, match := range mapMaptch {
-		pts[i] = []float64{match.Lon, match.Lat} 
+		pts[i] = []float64{match.Lon, match.Lat}
 	}
 
 	c.JSON(200, pts)

@@ -12,8 +12,8 @@ import (
 	"os"
 	"runtime"
 	"strconv"
-	"time"
 	"strings"
+	"time"
 )
 
 //Point struct
@@ -64,11 +64,11 @@ var nodesIndex = map[goraph.StringID]*Node{} //index nodeID to node
 
 //Way local way
 type Way struct {
-	ID      int64
-	NodeIDs []NodeID
-	Tags    map[string]string
-	Nodes   []*Node
-	Dist    float64
+	ID       int64
+	NodeIDs  []NodeID
+	Tags     map[string]string
+	Nodes    []*Node
+	Dist     float64
 	MaxSpeed int
 }
 
@@ -97,18 +97,18 @@ var VALID_WAYS = []string{
 
 //default speed (mph) per road type
 var WAY_SPEED = map[string]int{
-	"motorway": 55,
-	"trunk": 55,
-	"primary": 35,
-	"secondary": 25,
-	"tertiary": 25,
-	"service": 15,
-	"residential": 25,
-	"motorway_link": 55,
-	"trunk_link": 55,
-	"primary_link": 35,
+	"motorway":       55,
+	"trunk":          55,
+	"primary":        35,
+	"secondary":      25,
+	"tertiary":       25,
+	"service":        15,
+	"residential":    25,
+	"motorway_link":  55,
+	"trunk_link":     55,
+	"primary_link":   35,
 	"secondary_link": 25,
-	"tertiary_link": 25,
+	"tertiary_link":  25,
 }
 
 //return speed for way
@@ -124,7 +124,7 @@ func getWaySpeed(wayType, waySpeed string) int {
 
 		return WAY_SPEED[wayType]
 	}
-	
+
 	return speed
 }
 
@@ -189,9 +189,9 @@ func ParseData() {
 				speed := getWaySpeed(v.Tags["highway"], v.Tags["maxspeed"])
 
 				ways = append(ways, &Way{
-					ID:      v.ID,
-					NodeIDs: ids,
-					Tags:    v.Tags,
+					ID:       v.ID,
+					NodeIDs:  ids,
+					Tags:     v.Tags,
 					MaxSpeed: speed})
 				// Process Way v.
 				wc++
@@ -224,7 +224,7 @@ func ParseData() {
 		for i := 0; i < len(way.Nodes)-1; i++ {
 			curNode := way.Nodes[i]
 			nextNode := way.Nodes[i+1]
-			way.Dist  += curNode.Distance(nextNode)
+			way.Dist += curNode.Distance(nextNode)
 		}
 
 		if way.Dist == 0 {
