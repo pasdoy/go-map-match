@@ -2,7 +2,7 @@
 package main
 
 import (
-	"tmp/api"
+	"go-map-match/api"
 )
 
 func main() {
